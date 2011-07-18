@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Grace" EntityNamespace="Grace.Models" ContextNamespace="Grace" Class="db" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=ATGI-XPS\DEV2008;Initial Catalog=Grace;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ApplicationServices" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Attendance" Member="Attendances">
+    <Type Name="Attendance">
+      <Column Name="AttendanceID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ServiceID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SundayDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TotalNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Service_Attendance" Member="Service" ThisKey="ServiceID" OtherKey="ServiceID" Type="Service" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.State" Member="States">
+    <Type Name="State">
+      <Column Name="StateID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StateAbbreviation" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="State_ChurchAddress" Member="ChurchAddresses" ThisKey="StateID" OtherKey="StateID" Type="ChurchAddress" />
+      <Association Name="State_Member" Member="Members" ThisKey="StateID" OtherKey="StateID" Type="Member" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Church" Member="Churches">
+    <Type Name="Church">
+      <Column Name="ChurchID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="OfficePhone" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PagerPhone" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="EMail" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="DateStarted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsDefault" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Church_ChurchAddress" Member="ChurchAddresses" ThisKey="ChurchID" OtherKey="ChurchID" Type="ChurchAddress" />
+      <Association Name="Church_Committee" Member="Committees" ThisKey="ChurchID" OtherKey="ChurchID" Type="Committee" />
+      <Association Name="Church_Member" Member="Members" ThisKey="ChurchID" OtherKey="ChurchID" Type="Member" />
+      <Association Name="Church_Personnel" Member="Personnels" ThisKey="ChurchID" OtherKey="ChurchID" Type="Personnel" />
+      <Association Name="Church_Service" Member="Services" ThisKey="ChurchID" OtherKey="ChurchID" Type="Service" />
+      <Association Name="Church_SSClass" Member="SSClasses" ThisKey="ChurchID" OtherKey="ChurchID" Type="SSClass" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ChurchAddress" Member="ChurchAddresses">
+    <Type Name="ChurchAddress">
+      <Column Name="ChurchAddressID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ChurchID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Address1" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Address2" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="StateID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ZipCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ChurchAddressTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Church_ChurchAddress" Member="Church" ThisKey="ChurchID" OtherKey="ChurchID" Type="Church" IsForeignKey="true" />
+      <Association Name="State_ChurchAddress" Member="State" ThisKey="StateID" OtherKey="StateID" Type="State" IsForeignKey="true" />
+      <Association Name="ChurchAddressType_ChurchAddress" Member="ChurchAddressType" ThisKey="ChurchAddressTypeID" OtherKey="ChurchAddressTypeID" Type="ChurchAddressType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ChurchAddressType" Member="ChurchAddressTypes">
+    <Type Name="ChurchAddressType">
+      <Column Name="ChurchAddressTypeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="ChurchAddressType_ChurchAddress" Member="ChurchAddresses" ThisKey="ChurchAddressTypeID" OtherKey="ChurchAddressTypeID" Type="ChurchAddress" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Committee" Member="Committees">
+    <Type Name="Committee">
+      <Column Name="CommitteeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="DateFormed" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DateDisbanded" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ChurchID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Committee_CommitteeMember" Member="CommitteeMembers" ThisKey="CommitteeID" OtherKey="CommitteeID" Type="CommitteeMember" />
+      <Association Name="Church_Committee" Member="Church" ThisKey="ChurchID" OtherKey="ChurchID" Type="Church" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CommitteeMember" Member="CommitteeMembers">
+    <Type Name="CommitteeMember">
+      <Column Name="CommitteeMemberID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MemberID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CommitteeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CommitteeRoleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Committee_CommitteeMember" Member="Committee" ThisKey="CommitteeID" OtherKey="CommitteeID" Type="Committee" IsForeignKey="true" />
+      <Association Name="CommitteeRole_CommitteeMember" Member="CommitteeRole" ThisKey="CommitteeRoleID" OtherKey="CommitteeRoleID" Type="CommitteeRole" IsForeignKey="true" />
+      <Association Name="Member_CommitteeMember" Member="Member" ThisKey="MemberID" OtherKey="MemberID" Type="Member" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CommitteeRole" Member="CommitteeRoles">
+    <Type Name="CommitteeRole">
+      <Column Name="CommitteeRoleID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="CommitteeRole_CommitteeMember" Member="CommitteeMembers" ThisKey="CommitteeRoleID" OtherKey="CommitteeRoleID" Type="CommitteeMember" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Deacon" Member="Deacons">
+    <Type Name="Deacon">
+      <Column Name="DeaconID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MemberID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DateOrdained" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Member_Deacon" Member="Member" ThisKey="MemberID" OtherKey="MemberID" Type="Member" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Member" Member="Members">
+    <Type Name="Member">
+      <Column Name="MemberID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="MiddleInitial" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Address1" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Address2" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="StateID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ZipCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="HomePhone" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="WorkPhone" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="EMail" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="AlternateEMail" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="BirthDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Member" Member="Member1" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DateJoin" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MemberJoinTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DateLeave" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MemberLeaveTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsMale" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SalvationDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BaptismDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ChurchID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Member_CommitteeMember" Member="CommitteeMembers" ThisKey="MemberID" OtherKey="MemberID" Type="CommitteeMember" />
+      <Association Name="Member_Deacon" Member="Deacons" ThisKey="MemberID" OtherKey="MemberID" Type="Deacon" />
+      <Association Name="Member_MemberRelation" Member="MemberRelations" ThisKey="MemberID" OtherKey="HeadMemberID" Type="MemberRelation" />
+      <Association Name="Member_MemberRelation1" Member="MemberRelations1" ThisKey="MemberID" OtherKey="RelationMemberID" Type="MemberRelation" />
+      <Association Name="Member_Pastor" Member="Pastors" ThisKey="MemberID" OtherKey="MemberID" Type="Pastor" />
+      <Association Name="Member_PersonnelMember" Member="PersonnelMembers" ThisKey="MemberID" OtherKey="MemberID" Type="PersonnelMember" />
+      <Association Name="Member_SSClassMember" Member="SSClassMembers" ThisKey="MemberID" OtherKey="MemberID" Type="SSClassMember" />
+      <Association Name="Member_SSClassTeacher" Member="SSClassTeachers" ThisKey="MemberID" OtherKey="MemberID" Type="SSClassTeacher" />
+      <Association Name="Church_Member" Member="Church" ThisKey="ChurchID" OtherKey="ChurchID" Type="Church" IsForeignKey="true" />
+      <Association Name="State_Member" Member="State" ThisKey="StateID" OtherKey="StateID" Type="State" IsForeignKey="true" />
+      <Association Name="MemberJoinType_Member" Member="MemberJoinType" ThisKey="MemberJoinTypeID" OtherKey="MemberJoinTypeID" Type="MemberJoinType" IsForeignKey="true" />
+      <Association Name="MemberLeaveType_Member" Member="MemberLeaveType" ThisKey="MemberLeaveTypeID" OtherKey="MemberLeaveTypeID" Type="MemberLeaveType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MemberJoinType" Member="MemberJoinTypes">
+    <Type Name="MemberJoinType">
+      <Column Name="MemberJoinTypeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="MemberJoinType_Member" Member="Members" ThisKey="MemberJoinTypeID" OtherKey="MemberJoinTypeID" Type="Member" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MemberLeaveType" Member="MemberLeaveTypes">
+    <Type Name="MemberLeaveType">
+      <Column Name="MemberLeaveTypeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="MemberLeaveType_Member" Member="Members" ThisKey="MemberLeaveTypeID" OtherKey="MemberLeaveTypeID" Type="Member" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MemberRelation" Member="MemberRelations">
+    <Type Name="MemberRelation">
+      <Column Name="RelationshipID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="HeadMemberID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RelationMemberID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MemberRelationTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Member_MemberRelation" Member="Member" ThisKey="HeadMemberID" OtherKey="MemberID" Type="Member" IsForeignKey="true" />
+      <Association Name="Member_MemberRelation1" Member="Member1" ThisKey="RelationMemberID" OtherKey="MemberID" Type="Member" IsForeignKey="true" />
+      <Association Name="MemberRelationType_MemberRelation" Member="MemberRelationType" ThisKey="MemberRelationTypeID" OtherKey="MemberRelationTypeID" Type="MemberRelationType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MemberRelationType" Member="MemberRelationTypes">
+    <Type Name="MemberRelationType">
+      <Column Name="MemberRelationTypeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="MemberRelationType_MemberRelation" Member="MemberRelations" ThisKey="MemberRelationTypeID" OtherKey="MemberRelationTypeID" Type="MemberRelation" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Pastor" Member="Pastors">
+    <Type Name="Pastor">
+      <Column Name="PastorID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PastorTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DateOrdained" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DateRetired" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MemberID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Member_Pastor" Member="Member" ThisKey="MemberID" OtherKey="MemberID" Type="Member" IsForeignKey="true" />
+      <Association Name="PastorType_Pastor" Member="PastorType" ThisKey="PastorTypeID" OtherKey="PastorTypeID" Type="PastorType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PastorType" Member="PastorTypes">
+    <Type Name="PastorType">
+      <Column Name="PastorTypeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="PastorType_Pastor" Member="Pastors" ThisKey="PastorTypeID" OtherKey="PastorTypeID" Type="Pastor" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Personnel" Member="Personnels">
+    <Type Name="Personnel">
+      <Column Name="PersonnelID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ChurchID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Personnel_PersonnelMember" Member="PersonnelMembers" ThisKey="PersonnelID" OtherKey="PersonnelID" Type="PersonnelMember" />
+      <Association Name="Church_Personnel" Member="Church" ThisKey="ChurchID" OtherKey="ChurchID" Type="Church" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PersonnelMember" Member="PersonnelMembers">
+    <Type Name="PersonnelMember">
+      <Column Name="PersonnelMemberID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PersonnelID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MemberID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Member_PersonnelMember" Member="Member" ThisKey="MemberID" OtherKey="MemberID" Type="Member" IsForeignKey="true" />
+      <Association Name="Personnel_PersonnelMember" Member="Personnel" ThisKey="PersonnelID" OtherKey="PersonnelID" Type="Personnel" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Service" Member="Services">
+    <Type Name="Service">
+      <Column Name="ServiceID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="StartTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EndTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ChurchID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Service_Attendance" Member="Attendances" ThisKey="ServiceID" OtherKey="ServiceID" Type="Attendance" />
+      <Association Name="Church_Service" Member="Church" ThisKey="ChurchID" OtherKey="ChurchID" Type="Church" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SSAttendance" Member="SSAttendances">
+    <Type Name="SSAttendance">
+      <Column Name="SSAttendanceID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SundayDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SSClassMemberID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsAbsent" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="SSClassMember_SSAttendance" Member="SSClassMember" ThisKey="SSClassMemberID" OtherKey="SSClassMemberID" Type="SSClassMember" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SSClass" Member="SSClasses">
+    <Type Name="SSClass">
+      <Column Name="SSClassID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ShortDescription" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LongDescription" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="DateFormed" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ChurchID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="SSClass_SSClassTeacher" Member="SSClassTeachers" ThisKey="SSClassID" OtherKey="SSClassID" Type="SSClassTeacher" />
+      <Association Name="Church_SSClass" Member="Church" ThisKey="ChurchID" OtherKey="ChurchID" Type="Church" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SSClassMember" Member="SSClassMembers">
+    <Type Name="SSClassMember">
+      <Column Name="SSClassMemberID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SSClassID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MemberID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="SSClassMember_SSAttendance" Member="SSAttendances" ThisKey="SSClassMemberID" OtherKey="SSClassMemberID" Type="SSAttendance" />
+      <Association Name="Member_SSClassMember" Member="Member" ThisKey="MemberID" OtherKey="MemberID" Type="Member" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SSClassTeacher" Member="SSClassTeachers">
+    <Type Name="SSClassTeacher">
+      <Column Name="SSClassTeacherID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SSClassID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MemberID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SSClassTeacherTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Member_SSClassTeacher" Member="Member" ThisKey="MemberID" OtherKey="MemberID" Type="Member" IsForeignKey="true" />
+      <Association Name="SSClass_SSClassTeacher" Member="SSClass" ThisKey="SSClassID" OtherKey="SSClassID" Type="SSClass" IsForeignKey="true" />
+      <Association Name="SSClassTeacherType_SSClassTeacher" Member="SSClassTeacherType" ThisKey="SSClassTeacherTypeID" OtherKey="SSTeacherTypeID" Type="SSClassTeacherType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SSClassTeacherType" Member="SSClassTeacherTypes">
+    <Type Name="SSClassTeacherType">
+      <Column Name="SSTeacherTypeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="SSClassTeacherType_SSClassTeacher" Member="SSClassTeachers" ThisKey="SSTeacherTypeID" OtherKey="SSClassTeacherTypeID" Type="SSClassTeacher" />
+    </Type>
+  </Table>
+</Database>

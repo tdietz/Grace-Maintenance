@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{85C7DEC1-7B0F-4684-80E3-CD2CEB384BDB}</ProjectGuid>
+    <ProjectTypeGuids>{F85E285D-A4E0-4152-9332-AB1D724D3325};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Grace</RootNamespace>
+    <AssemblyName>Grace Maintenance</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="MvcContrib">
+      <HintPath>..\..\..\..\MVCContrib.release\MvcContrib.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=2.1.0.77, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\Travis Personal\Training\Concepts\IOC - Dependency Injection\Ninject\lib\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc, Version=2.1.0.29, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\Travis Personal\Training\Concepts\IOC - Dependency Injection\Ninject\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\CommitteeController.cs" />
+    <Compile Include="Controllers\CommitteeMemberController.cs" />
+    <Compile Include="Controllers\SSClassTeacherController.cs" />
+    <Compile Include="Controllers\SSClassMemberController.cs" />
+    <Compile Include="Controllers\SSClassController.cs" />
+    <Compile Include="Controllers\MemberRelationController.cs" />
+    <Compile Include="Core\AppLoaderDependencies.cs" />
+    <Compile Include="Core\Config.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Core\Implementations\AppLoaderService.cs" />
+    <Compile Include="Core\Interfaces\IAppLoaderService.cs" />
+    <Compile Include="Core\Implementations\GraceConfigService.cs" />
+    <Compile Include="Core\Implementations\ConfigService.cs" />
+    <Compile Include="Core\Implementations\GraceGlobalCacheService.cs" />
+    <Compile Include="Core\Implementations\GraceSessionService.cs" />
+    <Compile Include="Core\Implementations\HttpContextSessionCacheService.cs" />
+    <Compile Include="Core\Implementations\HttpRuntimeCacheService.cs" />
+    <Compile Include="Core\Interfaces\IGraceGlobalCacheService.cs" />
+    <Compile Include="Core\Interfaces\IGlobalCacheService.cs" />
+    <Compile Include="Core\Interfaces\IGraceSessionService.cs" />
+    <Compile Include="Core\Interfaces\ISessionCacheService.cs" />
+    <Compile Include="Core\Interfaces\IGraceConfigService.cs" />
+    <Compile Include="Core\Interfaces\IConfigService.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="GraceDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GraceDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\ViewExtensions.cs" />
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Implementations\SQLCommitteeMemberRepository.cs" />
+    <Compile Include="Models\Implementations\SQLCommitteeRoleRepository.cs" />
+    <Compile Include="Models\Implementations\SQLCommitteeRepository.cs" />
+    <Compile Include="Models\Implementations\SQLSSClassTeacherTypeRepository.cs" />
+    <Compile Include="Models\Interfaces\ICommitteeMemberRepository.cs" />
+    <Compile Include="Models\Interfaces\ICommitteeRoleRepository.cs" />
+    <Compile Include="Models\Interfaces\ICommitteeRepository.cs" />
+    <Compile Include="Models\Interfaces\ISSClassTeacherTypeRepository.cs" />
+    <Compile Include="Models\Partials\CommitteeMember.cs" />
+    <Compile Include="Models\Partials\SSClassTeacher.cs" />
+    <Compile Include="Models\Partials\SSClassMember.cs" />
+    <Compile Include="Models\Implementations\SQLSSClassTeacherRepository.cs" />
+    <Compile Include="Models\Implementations\SQLSSClassMemberRepository.cs" />
+    <Compile Include="Models\Interfaces\ISSClassTeacherRepository.cs" />
+    <Compile Include="Models\Interfaces\ISSClassMemberRepository.cs" />
+    <Compile Include="Models\Implementations\SQLSSClassRepository.cs" />
+    <Compile Include="Models\Interfaces\ISSClassRepository.cs" />
+    <Compile Include="Models\Partials\Member.cs" />
+    <Compile Include="Models\Implementations\SQLMemberRelationTypeRepository.cs" />
+    <Compile Include="Models\Interfaces\IMemberRelationTypeRepository.cs" />
+    <Compile Include="Models\Implementations\SQLMemberRelationRepository.cs" />
+    <Compile Include="Models\Interfaces\IMemberRelationRepository.cs" />
+    <Compile Include="Models\Implementations\SQLMemberLeaveTypeRepository.cs" />
+    <Compile Include="Models\Implementations\SQLMemberJoinTypeRepository.cs" />
+    <Compile Include="Models\Interfaces\IMemberJoinTypeRepository.cs" />
+    <Compile Include="Models\Interfaces\IMemberLeaveTypeRepository.cs" />
+    <Compile Include="Models\Implementations\SQLStateRepository.cs" />
+    <Compile Include="Models\Interfaces\IStateRepository.cs" />
+    <Compile Include="Models\GraceDB.cs">
+      <DependentUpon>GraceDB.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GraceDB.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GraceDB.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Interfaces\IMemberRepository.cs" />
+    <Compile Include="Models\Implementations\SQLMemberRepository.cs" />
+    <Compile Include="NinjectControllerFactory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\CommitteeList.cs" />
+    <Compile Include="ViewModels\Committee.cs" />
+    <Compile Include="ViewModels\CommitteeMember.cs" />
+    <Compile Include="ViewModels\SSClassTeacher.cs" />
+    <Compile Include="ViewModels\SSClassMember.cs" />
+    <Compile Include="ViewModels\SSClassList.cs" />
+    <Compile Include="ViewModels\SSClass.cs" />
+    <Compile Include="ViewModels\MemberRelation.cs" />
+    <Compile Include="ViewModels\MemberList.cs" />
+    <Compile Include="ViewModels\Member.cs" />
+    <Compile Include="Views\Shared\WebFormSite.Master.cs">
+      <DependentUpon>WebFormSite.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Shared\WebFormSite.Master.designer.cs">
+      <DependentUpon>WebFormSite.Master</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Birthdays.aspx.cs">
+      <DependentUpon>Birthdays.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Birthdays.aspx.designer.cs">
+      <DependentUpon>Birthdays.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Directory.aspx.cs">
+      <DependentUpon>Directory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Directory.aspx.designer.cs">
+      <DependentUpon>Directory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\MemberDataDump.aspx.cs">
+      <DependentUpon>MemberDataDump.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\MemberDataDump.aspx.designer.cs">
+      <DependentUpon>MemberDataDump.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Membership.aspx.cs">
+      <DependentUpon>Membership.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Membership.aspx.designer.cs">
+      <DependentUpon>Membership.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Global.asax" />
+    <Content Include="Views\CommitteeMember\Create.aspx" />
+    <Content Include="Views\Committee\Create.aspx" />
+    <Content Include="Views\Committee\Edit.aspx" />
+    <Content Include="Views\Committee\Index.aspx" />
+    <Content Include="Views\MemberRelation\Create.aspx" />
+    <Content Include="Views\MemberRelation\Edit.aspx" />
+    <Content Include="Views\Member\Create.aspx" />
+    <Content Include="Views\Member\Edit.aspx" />
+    <Content Include="Views\Member\Index.aspx" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.ascx" />
+    <Content Include="Views\SSClassMember\Create.aspx" />
+    <Content Include="Views\SSClassTeacher\Create.aspx" />
+    <Content Include="Views\SSClass\Create.aspx" />
+    <Content Include="Views\SSClass\Edit.aspx" />
+    <Content Include="Views\SSClass\Index.aspx" />
+    <None Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\jquery-1.4.1.js" />
+    <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Views\Account\ChangePassword.aspx" />
+    <Content Include="Views\Account\ChangePasswordSuccess.aspx" />
+    <Content Include="Views\Account\LogOn.aspx" />
+    <Content Include="Views\Account\Register.aspx" />
+    <Content Include="Views\Home\About.aspx" />
+    <Content Include="Views\Home\Index.aspx" />
+    <Content Include="Views\Shared\Error.aspx" />
+    <Content Include="Views\Shared\LogOnUserControl.ascx" />
+    <Content Include="Views\Shared\Site.Master" />
+    <Content Include="Views\Web.config" />
+    <Content Include="WebForms\Birthdays.aspx" />
+    <Content Include="WebForms\Directory.aspx" />
+    <Content Include="WebForms\MemberDataDump.aspx" />
+    <Content Include="WebForms\Membership.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="GraceDataSet.xsc">
+      <DependentUpon>GraceDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="GraceDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GraceDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GraceDataSet.xss">
+      <DependentUpon>GraceDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Models\GraceDB.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>GraceDB.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Views\Shared\WebFormSite.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Models\GraceDB.dbml.layout">
+      <DependentUpon>GraceDB.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\Birthdays.rdlc">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Directory.rdlc">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\MemberDataDump.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Membership.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target> -->
+  <Target Name="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(ProjectDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55394</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
